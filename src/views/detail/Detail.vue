@@ -10,6 +10,7 @@
       <detail-comment-info :comment-info="commentInfo" ref="comment"/>
       <goods-list :goods="recommends" ref="recommend"/>
     </scroll>
+    <detail-bottom-bar/>
   </div>
 </template>
 
@@ -24,11 +25,13 @@
   import DetailParamInfo from "./childComps/DetailParamInfo";
   import DetailCommentInfo from "./childComps/DetailCommentInfo";
   import GoodsList from "../../components/content/goods/GoodsList";
+  import DetailBottomBar from "./childComps/DetailBottomBar";
 
 
   export default {
     name: "Detail",
     components: {
+      DetailBottomBar,
       GoodsList,
       DetailCommentInfo,
       DetailParamInfo, DetailGoodsInfo, Scroll, DetailShopInfo, DetailBaseInfo, DetailSwiper, DetailNavBar},
@@ -142,6 +145,6 @@
     background-color: #fff;
   }
   .content{
-    height: calc(100% - 44px);
+    height: calc(100% - 44px - 58px);
   }
 </style>
