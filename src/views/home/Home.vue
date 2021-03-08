@@ -138,11 +138,12 @@
         this.isShowBackTop = (-position.y) > 1000
       })*/
 
-      //监听图片加载完成
-      this.$bus.$on('itemImageLoad',() => {
+      //监听首页图片加载完成
+      this.$bus.$on('homeItemImageLoad',() => {
         // this.$refs.scroll && this.$refs.scroll.refresh()
         refresh()
       })
+
 
     },
     activated() {

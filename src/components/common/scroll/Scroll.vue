@@ -32,7 +32,7 @@
       this.scroll = new BScroll(this.$refs.wrapper,{
         click: true,    //设置betterScroll内部的点击生效
         probeType: this.probeType,   //设置监听类型：0、1、2、3
-        pullUpLoad: this.pullUpLoad
+        pullUpLoad: this.pullUpLoad  //是否上拉加载更多
       })
       //监听滚动位置
       this.scroll.on('scroll',(position) =>{

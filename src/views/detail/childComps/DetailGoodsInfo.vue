@@ -30,10 +30,10 @@
     methods:{
 		  imgLoad(){
 		    //如果所有图片加载完了，则进行一次回调
-        console.log(this.imageLength);
+        //console.log(this.imageLength);
         if (++this.counter === this.imageLength){
           this.$emit('imageLoad');
-          console.log(this.imageLength);
+          //console.log(this.imageLength);
         }
       }
     },
