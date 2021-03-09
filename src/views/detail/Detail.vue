@@ -10,7 +10,8 @@
       <detail-comment-info :comment-info="commentInfo" ref="comment"/>
       <goods-list :goods="recommends" ref="recommend"/>
     </scroll>
-    <detail-bottom-bar/>
+    <back-top @click.native="topClick" v-show="isShowBackTop"/>
+    <detail-bottom-bar @addToCart="addToCart"/>
   </div>
 </template>
 
@@ -26,11 +27,13 @@
   import DetailCommentInfo from "./childComps/DetailCommentInfo";
   import GoodsList from "../../components/content/goods/GoodsList";
   import DetailBottomBar from "./childComps/DetailBottomBar";
+  import BackTop from "../../components/content/backTop/BackTop";
 
 
   export default {
     name: "Detail",
     components: {
+      BackTop,
       DetailBottomBar,
       GoodsList,
       DetailCommentInfo,
@@ -46,7 +49,8 @@
         commentInfo: {},
         recommends: [],
         themeTopYs: [],
-        currentIndex: 0
+        currentIndex: 0,
+        isShowBackTop: false
         }
     },
     created() {
@@ -127,6 +131,25 @@
             this.$refs.nav.currentIndex = this.currentIndex
           }
         }
+        //3.下拉超过1000px，出现返回顶部图标
+        this.isShowBackTop = (-position.y) > 1000
+      },
+      topClick(){   //点击返回顶部
+        this.$refs.scroll.scrollTo(0,0)
+      },
+      //添加到购物车
+      addToCart(){
+        //1.获取购物车需要展示的信息
+        const product = {}
+        product.iid = this.iid
+        product.image = this.topImages[0]
+        product.title = this.Goods.title
+        product.desc = this.Goods.desc
+        product.price = this.Goods.nowPrice
+        //2.将商品添加到购物车中
+        //console.log(this.$store);
+        //this.$store.commit('addCart',product)
+        this.$store.dispatch('addCart',product)
       }
     }
   }
