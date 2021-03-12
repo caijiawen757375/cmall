@@ -1,7 +1,7 @@
 <template>
   <div class="bottom-bar">
     <div class="check-content">
-      <check-button class="check-button" @click="checkAll"/>
+      <check-button class="check-button" :is-checked="isSelectAll" @click.native="checkAll"/>
       <span>全选</span>
     </div>
     <div class="price">
@@ -21,7 +21,7 @@
     name: "CartButtomBar",
     components: {CheckButton},
     computed: {
-      ...mapGetters(['cartList']),
+      ...mapGetters(['cartList','cartLength']),
       totalPrice() {
         return '￥' + this.cartList.filter(item => {
           return item.checked
@@ -31,11 +31,24 @@
       },
       checkLength(){
         return this.cartList.filter(item => item.checked).length
+      },
+      isSelectAll(){
+        if (this.checkLength === 0) return false
+        return this.cartList.filter(item => item.checked).length === this.cartLength
       }
     },
     methods: {
-      checkAll(){
-
+      checkAll(){ //全选点击按钮
+        console.log(this.isSelectAll);
+        if(this.isSelectAll){
+          this.cartList.map(item => {
+            item.checked = false
+          })
+        }else {
+          this.cartList.map(item => {
+            item.checked = true
+        })
+        }
       }
     }
   }

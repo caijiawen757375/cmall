@@ -18,9 +18,9 @@
       ...mapGetters(['cartList'])
     },
     activated() {
-      console.log('-----');
       this.$refs.scroll.refresh()
-    }
+    },
+
   }
 </script>
 

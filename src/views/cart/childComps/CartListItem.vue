@@ -19,15 +19,20 @@
 
 <script>
   import CheckButton from "../../../components/content/checkButton/CheckButton";
+  import {mapGetters} from "vuex"
   export default {
     name: "CartListItem",
     components: {CheckButton},
     props: {
       itemInfo: {}
     },
+    computed: {
+      ...mapGetters(['cartList','cartLength'])
+    },
     methods: {
       checkClick(){
         this.itemInfo.checked = !this.itemInfo.checked
+
       }
     }
   }

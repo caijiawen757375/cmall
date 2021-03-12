@@ -28,7 +28,7 @@
   import GoodsList from "../../components/content/goods/GoodsList";
   import DetailBottomBar from "./childComps/DetailBottomBar";
   import BackTop from "../../components/content/backTop/BackTop";
-
+  import {mapActions} from "vuex"
 
   export default {
     name: "Detail",
@@ -71,6 +71,7 @@
 
     },
     methods:{
+      ...mapActions(['addCart']),
       //请求详情页数据
       getDetailData(iid){
         getDetailData(iid).then(res => {
@@ -149,7 +150,10 @@
         //2.将商品添加到购物车中
         //console.log(this.$store);
         //this.$store.commit('addCart',product)
-        this.$store.dispatch('addCart',product)
+        //this.$store.dispatch('addCart',product)
+        this.addCart(product).then(res => {
+          console.log(res);
+        })
       }
     }
   }
