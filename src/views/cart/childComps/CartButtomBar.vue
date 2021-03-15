@@ -7,7 +7,7 @@
     <div class="price">
       合计: {{totalPrice}}
     </div>
-    <div class="calculate">
+    <div class="calculate" @click="settlement">
       去结算({{checkLength}})
     </div>
   </div>
@@ -48,6 +48,11 @@
           this.cartList.map(item => {
             item.checked = true
         })
+        }
+      },
+      settlement(){
+        if(this.cartList.filter(item => item.checked).length === 0){
+          this.$toast.show('请选择至少一件商品')
         }
       }
     }
